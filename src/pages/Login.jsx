@@ -1,21 +1,21 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import HabitDetails from "./pages/HabitDetails";
+// import { useAuth } from "./hooks/useAuth"; // optional
 
-const Login = () => {
-  // Optional: Component state (if needed)
-  // const [state, setState] = React.useState(initialValue);
-
-  // Optional: Event handlers or functions
-  // const handleClick = () => {
-  //   console.log("Button clicked!");
-  // };
+function App() {
+//   const { user } = useAuth(); // optional Firebase login
 
   return (
-    <div className="my-component">
-      <h1>Hello , Welcome To Habit Hacker!</h1>
-      {/* Example button */}
-      {/* <button onClick={handleClick}>Click Me</button> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={user ? <Dashboard /> : <Login />} />
+        <Route path="/habit/:id" element={user ? <HabitDetails /> : <Login />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
-export default Login
+export default App;

@@ -5,12 +5,12 @@ import './App.css'
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import HabitDetails from "./pages/HabitDetails";
-import { useAuth } from "./hooks/useAuth"; // optional
+// import { useAuth } from "./hooks/useAuth"; // optional
 import { BrowserRouter, Routes } from 'react-router-dom'
 
 function App() {
   
-  const {user} = useAuth();
+  const {user} = {};
 
   console.log(user)
   return (
