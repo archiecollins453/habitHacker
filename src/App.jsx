@@ -1,27 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import HabitDetails from "./pages/HabitDetails";
-// import { useAuth } from "./hooks/useAuth"; // optional
-import { BrowserRouter, Routes } from 'react-router-dom'
+import Register from "./pages/Register";
 
 function App() {
-  
-  const {user} = {};
+  const [user, setUser] = useState(null);
 
-  console.log(user)
+  const handleLogin = (userData) => {
+    setUser(userData);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path = "/login" element={<Login />}/>
-        <Route path="/" element={user ? <Dashboard /> : <Login />} />
-        <Route path="/habit/:id" element={user ? <HabitDetails /> : <Login />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route
+          path="/"
+          element={user ? <Dashboard /> : <Login onLogin={handleLogin} />}
+        />
+        <Route
+          path="/habit/:id"
+          element={user ? <HabitDetails /> : <Login onLogin={handleLogin} />}
+        />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

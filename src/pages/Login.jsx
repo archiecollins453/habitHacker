@@ -1,21 +1,56 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import HabitDetails from "./pages/HabitDetails";
-// import { useAuth } from "./hooks/useAuth"; // optional
+import { useState } from "react";
+import "../css/login.css";
+import Register from "./Register";
 
-function App() {
-//   const { user } = useAuth(); // optional Firebase login
+export default function Login({ onLogin }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const testUser = "test@test.com";
+    const testPass = "password123";
+
+    if (email === testUser && password === testPass) {
+      setError("");
+      onLogin({ email });
+    } else {
+      setError("Invalid email or password");
+    }
+  };
+
+  const navigateToRegister = () => {
+    window.location.href = "/register";
+  }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={user ? <Dashboard /> : <Login />} />
-        <Route path="/habit/:id" element={user ? <HabitDetails /> : <Login />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-card">
+        <h1>Habit Hacker</h1>
+
+        {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+
+        <input
+          type="email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+
+        <p className="register-text">
+          Don’t have an account?{" "}
+          <span onClick={navigateToRegister}>Register</span>
+        </p>
+      </form>
+    </div>
   );
 }
-
-export default App;

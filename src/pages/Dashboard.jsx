@@ -1,21 +1,25 @@
-import React from "react";
+import CalendarHeatmap from "../components/calendarHeatMap.jsx";
+import "../css/dashboard.css";
 
-const Login = () => {
-  // Optional: Component state (if needed)
-  // const [state, setState] = React.useState(initialValue);
-
-  // Optional: Event handlers or functions
-  // const handleClick = () => {
-  //   console.log("Button clicked!");
-  // };
-
+function Dashboard() {
   return (
-    <div className="my-component">
-      <h1>Hello , Welcome To Habit Hacker!</h1>
-      {/* Example button */}
-      {/* <button onClick={handleClick}>Click Me</button> */}
+    <div className="dashboard-container">
+      <h1>Habit Dashboard</h1>
+
+      <div className="stats-row">
+        <div className="stat-card">
+          <h3>Total Habits</h3>
+          <p>12</p>
+        </div>
+        <div className="stat-card">
+          <h3>Current Streak</h3>
+          <p>5 days</p>
+        </div>
+      </div>
+
+      <CalendarHeatmap />
     </div>
   );
-};
+}
 
-export default Login
+export default Dashboard;
