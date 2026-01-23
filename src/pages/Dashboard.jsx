@@ -28,13 +28,11 @@ function Dashboard() {
   const habitsCollection = collection(db, "habits");
   const journalsCollection = collection(db, "journals");
 
-  // Logout
   const handleLogout = async () => {
     await signOut(auth);
     window.location.href = "/login";
   };
 
-  // Fetch habits for a specific date
   const fetchHabits = async (date) => {
     const user = auth.currentUser;
     if (!user) return;
@@ -54,7 +52,6 @@ function Dashboard() {
     setHabits(userHabits);
   };
 
-  // Fetch all habits for streak calculation
   const fetchAllHabits = async () => {
     const user = auth.currentUser;
     if (!user) return [];
@@ -69,7 +66,6 @@ function Dashboard() {
     return userHabits;
   };
 
-  // Calculate streak
   const calculateStreak = (allHabits) => {
     const doneDates = allHabits
       .filter((h) => h.done)
@@ -84,7 +80,6 @@ function Dashboard() {
     return streak;
   };
 
-  // Add habit
   const addHabit = async (habitName, habitColor = "#4caf50") => {
     const user = auth.currentUser;
     if (!user) return;
@@ -102,7 +97,6 @@ function Dashboard() {
     setCurrentStreak(calculateStreak(all));
   };
 
-  // Toggle done
   const toggleDone = async (habit) => {
     const habitRef = doc(db, "habits", habit.id);
     await updateDoc(habitRef, { done: !habit.done });
@@ -111,7 +105,6 @@ function Dashboard() {
     setCurrentStreak(calculateStreak(all));
   };
 
-  // Delete habit
   const deleteHabit = async (habitId) => {
     await deleteDoc(doc(db, "habits", habitId));
     await fetchHabits(selectedDate);
@@ -119,7 +112,6 @@ function Dashboard() {
     setCurrentStreak(calculateStreak(all));
   };
 
-  // Fetch journal
   const fetchJournal = async () => {
     const user = auth.currentUser;
     if (!user) return;
@@ -138,7 +130,6 @@ function Dashboard() {
     }
   };
 
-  // Save journal
   const saveJournal = async () => {
     const user = auth.currentUser;
     if (!user) return;
@@ -220,7 +211,7 @@ function Dashboard() {
           <ul>
             {habits.map((habit) => (
               <li key={habit.id} className={habit.done ? "done" : ""}>
-                <span>{habit.name}</span>
+                <span style={{ color: habit.color }}>{habit.name}</span>
                 <div className="habit-actions">
                   <button onClick={() => toggleDone(habit)}>
                     {habit.done ? "Undo" : "Done"}

@@ -8,10 +8,8 @@ function CalendarHeatmap({ habits, selectedDate }) {
   const user = auth.currentUser;
   const userHabits = habits.filter(h => h.uid === user.uid);
 
-  // Days in selected month
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // Group habits by day
   const habitCountByDay = {};
   habits.forEach(h => {
     const hDate = new Date(h.date);
@@ -25,20 +23,18 @@ function CalendarHeatmap({ habits, selectedDate }) {
     }
   });
 
-  // Determine max count for shading
   const maxCount = Math.max(...Object.values(habitCountByDay), 1);
 
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
     const dayNum = i + 1;
     const count = habitCountByDay[dayNum] || 0;
     const intensity = Math.min(count / maxCount, 1);
-    const greenShade = `rgba(72, 187, 120, ${0.2 + intensity * 0.8})`; // lighter to darker green
+    const greenShade = `rgba(72, 187, 120, ${0.2 + intensity * 0.8})`;
     const isSelected = dayNum === selectedDate.getDate();
 
     return { dayNum, greenShade, isSelected };
   });
 
-  // Month label
   const monthLabel = selectedDate.toLocaleString("default", { month: "short", year: "numeric" });
 
   return (
@@ -57,9 +53,9 @@ function CalendarHeatmap({ habits, selectedDate }) {
       </div>
     </div>
 
-    
 
-    
+
+
   );
 }
 

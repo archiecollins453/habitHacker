@@ -22,7 +22,7 @@ export default function Register() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       setError("");
-      navigate("/"); // redirect to Dashboard after registration
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError(err.message);
