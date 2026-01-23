@@ -1,35 +1,31 @@
 import { useState } from "react";
 import "../css/login.css";
-import Register from "./Register";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../services/firebase";
+import { useNavigate } from "react-router-dom";
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const testUser = "test@test.com";
-    const testPass = "test";
-
-    if (email === testUser && password === testPass) {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       setError("");
-      onLogin({ email });
-    } else {
+      navigate("/"); // redirect to Dashboard
+    } catch (err) {
+      console.error(err);
       setError("Invalid email or password");
     }
   };
-
-  const navigateToRegister = () => {
-    window.location.href = "/register";
-  }
 
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-card">
         <h1>Habit Hacker</h1>
-
         {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
         <input
@@ -37,18 +33,25 @@ export default function Login({ onLogin }) {
           value={email}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
           value={password}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type="submit">Login</button>
 
         <p className="register-text">
           Don’t have an account?{" "}
-          <span onClick={navigateToRegister}>Register</span>
+          <span
+            style={{ color: "#2196f3", cursor: "pointer", textDecoration: "underline" }}
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </span>
         </p>
       </form>
     </div>

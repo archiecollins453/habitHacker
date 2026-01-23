@@ -4,8 +4,9 @@
 
 .calendar-month {
   display: grid;
-  grid-template-columns: repeat(7, 2rem); /* 7 days/week */
+  grid-template-columns: repeat(7, 2rem); /* 7 days per row */
   gap: 0.3rem;
+  justify-content: start;
 }
 
 .calendar-day {
@@ -14,10 +15,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #eee;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.7rem;
-  transition: all 0.2s;
+  font-size: 0.8rem;
+}
+
+.calendar-day.done {
+  background: #4caf50;
+  color: white;
 }
 
 .calendar-day.selected {
