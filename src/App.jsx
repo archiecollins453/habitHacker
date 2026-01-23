@@ -6,7 +6,6 @@ import { auth } from "./services/firebase";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import HabitDetails from "./pages/HabitDetails";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,10 +27,6 @@ function App() {
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
         <Route path="/" element={user ? <Dashboard /> : <Navigate to="/login" />} />
-        <Route
-          path="/habit/:id"
-          element={user ? <HabitDetails /> : <Navigate to="/login" />}
-        />
       </Routes>
     </BrowserRouter>
   );

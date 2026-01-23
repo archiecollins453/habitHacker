@@ -17,7 +17,7 @@ function AddHabitModal({ onClose, onAddHabit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (habitName.trim()) addToList(); // add last typed habit
+    if (habitName.trim()) addToList();
     habitList.forEach(habit => onAddHabit(habit.name, habit.color));
     setHabitList([]);
     setHabitName("");
