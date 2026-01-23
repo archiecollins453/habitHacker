@@ -1,4 +1,3 @@
-/* Modal overlay */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -9,7 +8,6 @@
   z-index: 1000;
 }
 
-/* Modal box */
 .modal-content {
   background: #fff;
   padding: 1.5rem;
@@ -19,7 +17,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Inputs */
 .modal-content input {
   width: 100%;
   padding: 0.6rem;
@@ -28,14 +25,12 @@
   border: 1px solid #ccc;
 }
 
-/* ✅ COLOR PICKER */
 .color-picker {
   display: flex;
   gap: 0.6rem;
   margin-bottom: 1rem;
 }
 
-/* Color circles */
 .color-circle {
   width: 28px;
   height: 28px;
@@ -53,7 +48,6 @@
   border: 3px solid #000;
 }
 
-/* Habit preview */
 .habit-preview {
   margin-top: 1rem;
   padding-left: 1rem;
