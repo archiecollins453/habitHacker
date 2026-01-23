@@ -1,7 +1,7 @@
-import CalendarHeatmap from "../components/calendarHeatMap.jsx";
+import CalendarHeatmap from "../components/CalendarHeatmap.jsx";
 import "../css/dashboard.css";
 
-function Dashboard() {
+const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <h1>Habit Dashboard</h1>

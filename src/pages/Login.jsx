@@ -11,7 +11,7 @@ export default function Login({ onLogin }) {
     e.preventDefault();
 
     const testUser = "test@test.com";
-    const testPass = "password123";
+    const testPass = "test";
 
     if (email === testUser && password === testPass) {
       setError("");
